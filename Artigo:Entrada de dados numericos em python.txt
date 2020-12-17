@@ -1,0 +1,73 @@
+Quando estamos programando em Python é muito comum transformar a entrada do dado que por padrão é um conjunto de caracteres em outro tipo, como por exemplo um número inteiro.
+
+Abaixo segue uma linha de código realizando esta transformação:
+
+numero_inteiro = int(input(“Digite um número qualquer e aperte enter:”))
+
+O grande problema desta linha de código é que ainda pode ser passado valor que não corresponde a um número, por exemplo e acabar retornando erro na execução do programa.
+
+Para evitar este problema, as restrições de valores são feitas acrescentando as intruções TRY e EXCEPTION:
+
+while True:
+    try:
+          num = int(input("Digite um número e aperte Enter:"))
+          break
+     except ValueError:
+          print("Você não digitou um número. Digite apenas um número.")
+print(" Legal, o número digitado foi:", num)
+
+Neste bloco de código, o número, foi transformado de caractere para número inteiro. Com o comando Try, que tem o significado de tentar na tradução para o português, o Python verifica se o valor realmente é um número após a transformação. Caso seja passado um conjunto de caracteres que após a transformação não seja um número, o comando Except entra em ação. A linha except ValueError acima informa que foi passado um valor que não era um número.
+Com a instrução While True este bloco é repetido até que seja informado um número. Repare os exemplos de resultado abaixo:
+
+Digite um número e aperte Enter:yy
+Você não digitou um número. Digite apenas um número.
+Digite um número e aperte Enter:uuu
+Você não digitou um número. Digite apenas um número.
+Digite um número e aperte Enter:y
+Você não digitou um número. Digite apenas um número.
+
+
+Observe que há a possibilidade também de selecionar valores mais específicos ou até mesmo selecionar uma faixa limite de números realizando pequenas modificações no código acima:
+
+class OutrosErros(Exception):
+       pass
+
+while True:
+     try:
+          numeroEscolhido = int(input("\n Número Escolhido: \n"))
+          if numeroEscolhido not in range(0,11):
+                raise OutrosErros
+          break
+     except (ValueError):
+          print("Digite apenas números no inervalo dado.")
+     except (OutrosErros):
+          print("Escolha um número entre 0-10!")
+
+Algumas resultados:
+
+Número Escolhido: 
+90
+Escolha um número entre 0-10!
+
+ Número Escolhido: 
+87
+Escolha um número entre 0-10!
+
+ Número Escolhido: 
+oo
+Digite apenas números no intervalo dado.
+
+ Número Escolhido: 
+iii
+Digite apenas números no intervalo dado.
+
+ Número Escolhido: 
+8
+
+A exceção ValueError é causada quando o usuário digita uma letra por exemplo, algo que não é convertido em número com a instrução da função int().
+A outra exceção, da classe criada OutrosErros, serve para redireciona o código quando há números porém os mesmos não se encontram na faixa do limite selecionado.
+
+Estou utilizando nos meus códigos algo muito similar ao código passado.
+
+Espero que possa ter ajudado. Até mais.
+Cláudio
