@@ -36,12 +36,7 @@
       fsType = "btrfs";
     };
    
-   fileSystems."/new-hd" = 
-     { device = "/dev/mapper/lvmnix-new-hd";
-       fsType = "btrfs";
-     };
-
-  swapDevices =
+   swapDevices =
     [ { device = "/dev/mapper/lvmnix-swap"; }
     ];
 
